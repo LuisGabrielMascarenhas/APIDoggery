@@ -13,7 +13,7 @@ class DBconnect{
         $this->con = new mysqli(DB_HOST,DB_NAME,DB_PASS,DB_USER);
 
         if(mysqli_connect_errno()){
-            echo "Failed to connect to MySQL: ".mysqli_connect_errno();
+            echo "Falha ao conectar ao MySQL: ".mysqli_connect_errno();
         }
 
         return $this->con;

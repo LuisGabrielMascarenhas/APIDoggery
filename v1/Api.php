@@ -16,7 +16,7 @@ function parametrosEstãoDisponiveis($params){
     if(!$disponivel){
         $response = array();
         $response['error'] = true;
-        $response['message'] = 'Parametros '. substr($missingParams,1,strlen($missingParams)) . ' missing';
+        $response['message'] = 'Parâmetros '. substr($missingParams,1,strlen($missingParams)) . ' desaparecidos';
 
         echo json_encode($response);
 

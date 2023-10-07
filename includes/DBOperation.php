@@ -13,6 +13,11 @@ class DBOperation{
         $this->con =$db->connect();
     }
 
+
+    function criarUsuario(){
+        
+    }
+
 }
 
 ?>

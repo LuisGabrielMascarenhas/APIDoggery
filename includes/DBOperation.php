@@ -17,7 +17,16 @@ class DBOperation{
     function criarUsuario(){
         
     }
+    function getUsuario(){
 
+    }
+    function updateUsuario(){
+        
+    }
+    function deleteUsuario(){
+
+    }
+    
 }
 
 ?>

@@ -28,27 +28,88 @@ function parametrosEstãoDisponiveis($params){
 $response = array();
 
     if(isset($_GET['apicall'])){
+
         switch($_GET['apicall']){
 
             case 'criarUsuario':
 
-            parametrosEstãoDisponiveis(array());
+            parametrosEstãoDisponiveis(array('usu_id','usu_nome','usu_email','usu_senha','usu_telefone'));
 
             $db = new DbOperation();
 
         $result = $db->criarUsuario(
-            
-
+            $_POST['usu_nome'],
+            $_POST['usu_email'],
+            $_POST['usu_senha'],
+            $_POST['usu_telefone'],
         );
 
         if($result){
-
             $response['error'] = false;
             $response['message'] = 'Usuário criado com sucesso';
-            $response[''];
-        }
+            $response['usuarios']= $db->getUsuario();
 
+        }else{
+            $response['error'] = true;
+            $response['message'] = 'Ocorreu um erro por favor tente novamente';
+            
         }
+        break;
+
+
+        case 'getUsuario':
+            $db = new DBOperation();
+            $response['error'] = false;
+            $response['message'] = 'Pedido feito com sucesso';
+            $response['usuarios']= $db->getUsuario();
+            break;
+
+
+         case 'updateUsuario':
+            parametrosEstãoDisponiveis(array());
+
+            $db = new DbOperation();
+    
+            $result = $db->criarUsuario(
+                $_POST['usu_nome'],
+                $_POST['usu_email'],
+                $_POST['usu_senha'],
+                $_POST['usu_telefone'],
+            );
+
+            if($result){
+                $response['error'] = false;
+                $response['message'] = 'Usuário atualizado com sucesso';
+                $response['usuarios']= $db->getUsuario();
+            }else{
+                $response['error'] = true;
+                $response['message'] = 'Houve um erro por favor tente novamente';
+
+            }
+        break;
+
+        case 'deletarUsuario':
+            if(isset($_GET['usu_id'])){
+                $db = new DBOperation();
+                if($db->deleteUsuario($_GET['usu_id'])){
+                $response['error'] = false;
+                $response['message'] = 'Usuário excluido com sucesso';
+                $response['usuarios']= $db->getUsuario();
+                }
+            }else{
+                $response['error'] = true;
+                $response['message'] = 'Houve um erro por favor tente novamente';
+
+            }
+    break;
+
     }
+    
+    }else{
+        $response['error'] = true;
+        $response['message'] = 'Chamada de API inválida';
+
+    }
+    echo json_encode($response);
 
 ?>

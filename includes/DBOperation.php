@@ -16,8 +16,8 @@ class DBOperation{
     }
 
 
-    function criarUsuario($usu_nome, $usu_email,$usu_senha,$usu_telefone){
-        $stmt = $this->con->prepare("INSERT INTO Usuarios ($usu_nome,$usu_email,$usu_senha,$usu_telefone");
+    function criarUsuario($usu_nome, $usu_email, $usu_senha, $usu_telefone){
+        $stmt = $this->con->prepare("INSERT INTO Usuarios (usu_nome, usu_email, usu_senha, usu_telefone) VALUES (?, ?, ?, ?)");
         $stmt->bind_param("ssss",$usu_nome,$usu_email,$usu_senha,$usu_telefone);
         if($stmt->execute())
                 return true;

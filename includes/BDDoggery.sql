@@ -11,4 +11,5 @@ CREATE TABLE Usuarios(
 
 
 );
-INSERT INTO Usuarios VALUES ("Luis","Luis.gmail","1234","12380283");
+INSERT INTO Usuarios VALUES (1,"Luis","Luis.gmail","1234","12380283");
+

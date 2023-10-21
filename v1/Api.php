@@ -92,8 +92,6 @@ $response = array();
 
         case 'deletarUsuario':
 
-
-
             if(isset($_GET['usu_id'])){
                     $db = new DBOperation();
                     if($db->deletarUsuario($_GET['usu_id'])){

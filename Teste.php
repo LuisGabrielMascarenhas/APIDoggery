@@ -14,7 +14,7 @@
         <div class="Formulario">
         <div class="label">
                 <label for="usu_id">ID:</label>
-                <input class="input" type="number" name="usu_id" id="usu_id" placeholder="Insira o id ">
+                <input class="input" type="text" name="usu_id" id="usu_id" placeholder="Insira o id ">
             </div>
       
             <button type="submmit">Enviar</button>

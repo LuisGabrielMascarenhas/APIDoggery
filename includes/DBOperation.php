@@ -45,7 +45,7 @@ class DBOperation{
     }
 
 
-    function updateUsuario(){
+    function updateUsuario($usu_id,$usu_nome, $usu_email, $usu_senha, $usu_telefone){
         $stmt = $this->con->prepare("UPDATE Usuarios SET usu_nome = ?, usu_email = ?, usu_senha = ?, usu_telefone = ? WHERE usu_id = ?");
         $stmt->bind_param("ssssi",$usu_nome,$usu_email,$usu_senha,$usu_telefone,$usu_id);
         if($stmt->execute())
@@ -56,13 +56,13 @@ class DBOperation{
 
 
     
-    function deleteUsuario(){
-        $stmt = $this->con->prepare("DELETE FROM Usuarios WHERE usu_id = ?");
-        $stmt->bind_param("i",$usu_id);
-        if($stmt->execute())
-                return true;
-
-        return false;
+    function deletarUsuario($usu_id){
+            $stmt = $this->con->prepare("DELETE FROM Usuarios WHERE usu_id = ?");
+            $stmt->bind_param("i",$usu_id);
+            if($stmt->execute())
+                    return true;
+                
+            return false;
     }
     }
     

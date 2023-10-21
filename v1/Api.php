@@ -71,7 +71,8 @@ $response = array();
 
             $db = new DbOperation();
     
-            $result = $db->criarUsuario(
+            $result = $db->updateUsuario(
+                $_POST['usu_id'],
                 $_POST['usu_nome'],
                 $_POST['usu_email'],
                 $_POST['usu_senha'],
@@ -90,16 +91,19 @@ $response = array();
         break;
 
         case 'deletarUsuario':
+
+
+
             if(isset($_GET['usu_id'])){
-                $db = new DBOperation();
-                if($db->deleteUsuario($_GET['usu_id'])){
-                $response['error'] = false;
-                $response['message'] = 'Usuário excluido com sucesso';
-                $response['usuarios']= $db->getUsuario();
+                    $db = new DBOperation();
+                    if($db->deletarUsuario($_GET['usu_id'])){
+                            $response['error'] = false;
+                            $response['message'] = 'Usuário excluido com sucesso';
+                            $response['usuarios']= $db->getUsuario();
                 }
             }else{
-                $response['error'] = true;
-                $response['message'] = 'Houve um erro por favor tente novamente';
+                            $response['error'] = true;
+                            $response['message'] = 'Houve um erro por favor tente novamente';
 
             }
     break;

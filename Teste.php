@@ -10,30 +10,13 @@
 </head>
 
 <body>
-    <Form action="v1/Api.php?apicall=criarUsuario" method="post">
+    <Form action="v1/Api.php?apicall=deletarUsuario" method="post">
         <div class="Formulario">
-            <h1>Nome</h1>
-            <div class="label">
-                <label for="usu_nome">Nome:</label>
-                <input class="input" type="text" name="usu_nome" id="usu_nome" placeholder="Insira o nome">
+        <div class="label">
+                <label for="usu_id">ID:</label>
+                <input class="input" type="number" name="usu_id" id="usu_id" placeholder="Insira o id ">
             </div>
-
-            <div>
-                <label for="usu_email">Email:</label>
-                <input type="text" name="usu_email" id="usu_email" placeholder="Insira o email">
-
-            </div>
-            <div>
-                <label for="usu_senha">Senha</label>
-                <input type="text" name="usu_senha" id="usu_senha" placeholder="Senha">
-
-            </div>
-    
-            <div>
-                <label for="usu_telefone">Telefone</label>
-                <input type="text" name="usu_telefone" id="usu_telefone" placeholder="telefone">
-
-            </div>
+      
             <button type="submmit">Enviar</button>
 </div>
     </Form>

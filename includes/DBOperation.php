@@ -25,7 +25,7 @@ class DBOperation{
     }
 
     function getUsuario(){
-        $stmt = $this->con->prepare("SELECT usu_id,usu_nome,usu_email,usu_telefone");
+        $stmt = $this->con->prepare("SELECT usu_id,usu_nome,usu_email,usu_telefone FROM Usuarios");
         $stmt->execute();
         $stmt->bind_result($usu_id,$usu_nome,$usu_email,$usu_telefone);
 

@@ -46,7 +46,7 @@ class DBOperation{
 
 
     function updateUsuario(){
-        $stmt = $this->con->prepare("UPDATE Usuarios SET usu_nome = ?, usu_email = ?, usu_senha = ?,usu_telefone = ?");
+        $stmt = $this->con->prepare("UPDATE Usuarios SET usu_nome = ?, usu_email = ?, usu_senha = ?, usu_telefone = ? WHERE usu_id = ?");
         $stmt->bind_param("ssss",$usu_nome,$usu_email,$usu_senha,$usu_telefone);
         if($stmt->execute())
                 return true;

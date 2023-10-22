@@ -54,17 +54,16 @@ class DBOperation{
         
     }
 
-    
+
     function deletarUsuario($usu_id){
-            $stmt = $this->con->prepare("DELETE FROM Usuarios WHERE usu_id = ? ");
-            $stmt->bind_param("i",$usu_id);
-            if($stmt->execute())
-                    return true;
-            
-            return false;
-                     
-         }
+        $stmt = $this->con->prepare("DELETE FROM Usuarios WHERE usu_id = ? ");
+        $stmt->bind_param("i",$usu_id);
+        if($stmt->execute())
+            return true;
+
+        return false;
     }
+}
     
     
 

@@ -32,6 +32,7 @@ $response = array();
 
         switch($_GET['apicall']){
 
+            //Cria o Usuario
             case 'criarUsuario':
 
             parametrosEstãoDisponiveis(array('usu_nome','usu_email','usu_senha','usu_telefone'));
@@ -57,54 +58,59 @@ $response = array();
         }
         break;
 
+        //Mostra os usuarios no banco
+            case 'getUsuario':
+                $db = new DBOperation();
+                $response['error'] = false;
+                $response['message'] = 'Pedido feito com sucesso';
+                $response['usuarios']= $db->getUsuario();
+                break;
 
-        case 'getUsuario':
-            $db = new DBOperation();
-            $response['error'] = false;
-            $response['message'] = 'Pedido feito com sucesso';
-            $response['usuarios']= $db->getUsuario();
-            break;
+        //Atualiza os usuarios
+            case 'updateUsuario':
+                parametrosEstãoDisponiveis(array('usu_id','usu_nome','usu_email','usu_senha','usu_telefone'));
 
-
-         case 'updateUsuario':
-            parametrosEstãoDisponiveis(array());
-
-            $db = new DbOperation();
+             $db = new DbOperation();
     
-            $result = $db->updateUsuario(
-                $_POST['usu_id'],
-                $_POST['usu_nome'],
-                $_POST['usu_email'],
-                $_POST['usu_senha'],
-                $_POST['usu_telefone'],
+                $result = $db->updateUsuario(
+                    $_POST['usu_id'],
+                    $_POST['usu_nome'],
+                    $_POST['usu_email'],
+                    $_POST['usu_senha'],
+                    $_POST['usu_telefone'],
             );
 
-            if($result){
-                $response['error'] = false;
-                $response['message'] = 'Usuário atualizado com sucesso';
-                $response['usuarios']= $db->getUsuario();
-            }else{
-                $response['error'] = true;
-                $response['message'] = 'Houve um erro por favor tente novamente';
+                if($result){
+                    $response['error'] = false;
+                    $response['message'] = 'Usuário atualizado com sucesso';
+                    $response['usuarios']= $db->getUsuario();
+                }else{
+                    $response['error'] = true;
+                    $response['message'] = 'Houve um erro por favor tente novamente';
 
             }
         break;
+        //TODO Concertar problema de não conseguir deletar o usuario
+        //Deleta o Usuario
+   
+        
+            case 'deletarUsuario':
 
-        case 'deletarUsuario':
-
-            if(isset($_GET['usu_id'])){
+                if(isset($_POST['usu_id'])){
                     $db = new DBOperation();
-                    if($db->deletarUsuario($_GET['usu_id'])){
+                    if($db->deletarUsuario($_POST['usu_id'])){
                             $response['error'] = false;
                             $response['message'] = 'Usuário excluido com sucesso';
                             $response['usuarios']= $db->getUsuario();
-                }
-            }else{
+                    }else{
                             $response['error'] = true;
                             $response['message'] = 'Houve um erro por favor tente novamente';
-
-            }
-    break;
+                    }
+                }else{
+                            $response['error'] = true;
+                            $response['message'] = 'Nada para apagar tente novamente';
+                }
+        break;
 
     }
     

@@ -8,23 +8,25 @@
 <body>
 <h2>Atualizar Usuário</h2>
 
-<form action="v1/Api.php?apicall=updateUsuario" method="post">
+<form action="v1/Api.php?apicall=updateTutor" method="post">
   
 
-    <label for="usu_id">ID do Usuário:</label>
-    <input type="text" name="usu_id" id="usu_id" required><br><br>
+    <label for="idTutor">ID do Usuário:</label>
+    <input type="text" name="idTutor" id="idTutor" required><br><br>
 
-    <label for="usu_nome">Novo Nome:</label>
-    <input type="text" name="usu_nome" id="usu_nome" required><br><br>
+    <label for="Nome">Novo Nome:</label>
+    <input type="text" name="Nome" id="Nome" required><br><br>
 
-    <label for="usu_email">Novo Email:</label>
-    <input type="email" name="usu_email" id="usu_email" required><br><br>
+    <label for="Email">Novo Email:</label>
+    <input type="email" name="Email" id="Email" required><br><br>
 
-    <label for="usu_senha">Nova Senha:</label>
-    <input type="password" name="usu_senha" id="usu_senha" required><br><br>
+    <label for="Senha">Nova Senha:</label>
+    <input type="password" name="Senha" id="Senha" required><br><br>
 
-    <label for="usu_telefone">Novo Telefone:</label>
-    <input type="text" name="usu_telefone" id="usu_telefone" required><br><br>
+    <label for="Celular">Celular:</label>
+    <input type="text" name="Celular" id="Celular" required><br><br>
+    
+    
 
     <input type="submit" value="Atualizar Usuário">
 </form>

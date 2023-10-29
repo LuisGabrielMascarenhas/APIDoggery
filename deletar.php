@@ -8,11 +8,11 @@
 <body>
 <h2>Deletar Usuário</h2>
 
-<form action="v1/Api.php?apicall=deletarUsuario" method="post">
+<form action="v1/Api.php?apicall=deleteTutor" method="post">
   
 
-    <label for="usu_id">ID do Usuário a Deletar:</label>
-    <input type="text" name="usu_id" id="usu_id" required><br><br>
+    <label for="idTutor">ID do Usuário a Deletar:</label>
+    <input type="text" name="idTutor" id="idTutor" required><br><br>
 
     <input type="submit" value="Deletar Usuário">
 </form>

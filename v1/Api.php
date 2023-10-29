@@ -32,24 +32,24 @@ $response = array();
 
         switch($_GET['apicall']){
 
-            //Cria o Usuario
-            case 'criarUsuario':
+        //Cria o Usuario
+            case 'criarTutor':
 
-            parametrosEstãoDisponiveis(array('usu_nome','usu_email','usu_senha','usu_telefone'));
+            parametrosEstãoDisponiveis(array('Nome','Email','Senha','Celular'));
 
-            $db = new DbOperation();
+            $db = new DBOperation();
 
-        $result = $db->criarUsuario(
-            $_POST['usu_nome'],
-            $_POST['usu_email'],
-            $_POST['usu_senha'],
-            $_POST['usu_telefone'],
+        $result = $db->criarTutor(
+            $_POST['Nome'],
+            $_POST['Email'],
+            $_POST['Senha'],
+            $_POST['Celular'],
         );
 
         if($result){
             $response['error'] = false;
-            $response['message'] = 'Usuário criado com sucesso';
-            $response['usuarios']= $db->getUsuario();
+            $response['message'] = 'Tutor criado com sucesso';
+            $response['Tutor']= $db->getTutor();
 
         }else{
             $response['error'] = true;
@@ -58,50 +58,58 @@ $response = array();
         }
         break;
 
-        //Mostra os usuarios no banco
-            case 'getUsuario':
+        //Mostra os Tutor no banco
+            case 'getTutor':
                 $db = new DBOperation();
                 $response['error'] = false;
                 $response['message'] = 'Pedido feito com sucesso';
-                $response['usuarios']= $db->getUsuario();
+                $response['Tutor']= $db->getTutor();
                 break;
+            
+       /*      case 'getTutorDesc':
+                $db = new DBOperation();
+                $response['error'] = false;
+                $response['message'] = 'Pedido feito com sucesso';
+                $response['Tutor']= $db->getTutorDesc();
+            break; */
 
-        //Atualiza os usuarios
-            case 'updateUsuario':
-                parametrosEstãoDisponiveis(array('usu_id','usu_nome','usu_email','usu_senha','usu_telefone'));
+        //Atualiza os Tutor
+            case 'updateTutor':
+                parametrosEstãoDisponiveis(array('idTutor','Nome','Email','Senha','Celular'));
 
-             $db = new DbOperation();
+             $db = new DBOperation();
     
-                $result = $db->updateUsuario(
-                    $_POST['usu_id'],
-                    $_POST['usu_nome'],
-                    $_POST['usu_email'],
-                    $_POST['usu_senha'],
-                    $_POST['usu_telefone'],
-            );
+                $result = $db->updateTutor(
+                    $_POST['idTutor'],
+                    $_POST['Nome'],
+                    $_POST['Email'],
+                    $_POST['Senha'],
+                    $_POST['Celular'],
+    
+                );
 
                 if($result){
                     $response['error'] = false;
                     $response['message'] = 'Usuário atualizado com sucesso';
-                    $response['usuarios']= $db->getUsuario();
+                    $response['Tutor']= $db->getTutor();
                 }else{
                     $response['error'] = true;
                     $response['message'] = 'Houve um erro por favor tente novamente';
 
             }
         break;
-        //TODO Concertar problema de não conseguir deletar o usuario
+    
         //Deleta o Usuario
    
         
-            case 'deletarUsuario':
+            case 'deleteTutor':
 
-                if(isset($_POST['usu_id'])){
+                if(isset($_POST['idTutor'])){
                     $db = new DBOperation();
-                    if($db->deletarUsuario($_POST['usu_id'])){
+                    if($db->deleteTutor($_POST['idTutor'])){
                             $response['error'] = false;
                             $response['message'] = 'Usuário excluido com sucesso';
-                            $response['usuarios']= $db->getUsuario();
+                            $response['Tutor']= $db->getTutor();
                     }else{
                             $response['error'] = true;
                             $response['message'] = 'Houve um erro por favor tente novamente';
@@ -111,8 +119,89 @@ $response = array();
                             $response['message'] = 'Nada para apagar tente novamente';
                 }
         break;
+        
+        
+        //Pets
+        //Criar o Pet
+        case 'criarPet':
 
+            parametrosEstãoDisponiveis(array('$idTutor','Nome', 'Peso', 'Restricao'));
+
+            $db = new DBOperation();
+
+        $result = $db->criarPet(
+            $_POST['idTutor'],
+            $_POST['Nome'],
+            $_POST['Peso'],
+            $_POST['Restricao'],
+        );
+
+        if($result){
+            $response['error'] = false;
+            $response['message'] = 'Pet criado com sucesso';
+            $response['Pets']= $db->getPet();
+
+        }else{
+            $response['error'] = true;
+            $response['message'] = 'Ocorreu um erro por favor tente novamente';
+            
+        }
+        break;
+
+
+        //Pegar as informações do pet
+        case 'getPet':
+            $db = new DBOperation();
+            $response['error'] = false;
+            $response['message'] = 'Pedido feito com sucesso';
+            $response['Pets']= $db->getPet();
+        break;
+
+
+        //Atualizar as informaçoes do Pet
+        case 'updatePet':
+            parametrosEstãoDisponiveis(array('idPet','Nome','Peso','Descricao'));
+
+         $db = new DBOperation();
+
+            $result = $db->updatePet(
+                $_POST['idPet'],
+                $_POST['Nome'],
+                $_POST['Peso'],
+                $_POST['Descricao'],
+
+            );
+
+            if($result){
+                $response['error'] = false;
+                $response['message'] = 'Pet atualizado com sucesso';
+                $response['Pet']= $db->getPet();
+            }else{
+                $response['error'] = true;
+                $response['message'] = 'Houve um erro por favor tente novamente';
+
+        }
+        break;
+        //Deletar os Pets
+        case 'deletarPet':
+
+            if(isset($_POST['idPet'])){
+                $db = new DBOperation();
+                if($db->deletarPet($_POST['idPet'])){
+                        $response['error'] = false;
+                        $response['message'] = 'Pet excluido com sucesso';
+                        $response['Pets']= $db->getPet();
+                }else{
+                        $response['error'] = true;
+                        $response['message'] = 'Houve um erro por favor tente novamente';
+                }
+            }else{
+                        $response['error'] = true;
+                        $response['message'] = 'Nada para apagar tente novamente';
+            }
+    break;
     }
+    
     
     }else{
         $response['error'] = true;
@@ -120,5 +209,3 @@ $response = array();
 
     }
     echo json_encode($response);
-
-?>
